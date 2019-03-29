@@ -7,28 +7,51 @@
 //
 
 import XCTest
+import Mapper
+import RxSwift
 @testable import GithubUsers
 
+
 class GithubUsersTests: XCTestCase {
+    
+    var user: GithubUser!
+    var service: GithubService!
+    var disposeBag: DisposeBag!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+        user = try! GithubUser(map: Mapper(JSON: ["login": "eleazar0425", "avatar_url": "https://avatars0.githubusercontent.com/u/15700438?v=4", "id": 64907117]))
+    
+        service = GithubService()
+        disposeBag = DisposeBag()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+        user = nil
+        service = nil
+        disposeBag = nil
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGithubUser(){
+        XCTAssertNotNil(user)
+        XCTAssertFalse(user.avatarUrl.isEmpty)
+        XCTAssertFalse(user.username.isEmpty)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    
+    func testService(){
+        let expectation = self.expectation(description: "Wait for the  githubusers request to finish")
+        
+        service.getUsers(since: 0)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { users in
+                XCTAssert(users.count == 30)
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        let _ = XCTWaiter.wait(for: [expectation], timeout: 20)
     }
-
 }
