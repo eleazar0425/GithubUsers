@@ -10,6 +10,7 @@ target 'GithubUsers' do
   pod 'Moya/RxSwift'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'AlamofireImage'
 
   target 'GithubUsersTests' do
     inherit! :search_paths

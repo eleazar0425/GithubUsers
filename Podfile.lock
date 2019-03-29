@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.8.0)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
   - ModelMapper (9.0.1):
     - ModelMapper/Core (= 9.0.1)
   - ModelMapper/Core (9.0.1)
@@ -26,6 +28,7 @@ PODS:
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
+  - AlamofireImage
   - Moya-ModelMapper/RxSwift
   - Moya/RxSwift
   - RxCocoa
@@ -34,6 +37,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AlamofireImage
     - ModelMapper
     - Moya
     - Moya-ModelMapper
@@ -44,6 +48,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   ModelMapper: 89a61430a75e6265040dc9555ab1feddeb25b986
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Moya-ModelMapper: 35209257d9e886cedf91289559a41723f5fbd095
@@ -52,6 +57,6 @@ SPEC CHECKSUMS:
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 635d66f166dcfbe8e4b5bde36315efdab5364dd7
+PODFILE CHECKSUM: 55b28ac0e0feea20fea77df05ab67399424960f2
 
 COCOAPODS: 1.5.3
