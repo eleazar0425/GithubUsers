@@ -76,11 +76,88 @@
                     <navigationItem key="navigationItem" title="GithubUsers" largeTitleDisplayMode="always" id="Lw5-w6-szx"/>
                     <connections>
                         <outlet property="collectionView" destination="1mY-9G-PKd" id="qfZ-qZ-tXH"/>
+                        <segue destination="BjX-3p-LAv" kind="show" id="2IU-4K-blG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="128.18590704647679"/>
+        </scene>
+        <!--Github User Detail View Controller-->
+        <scene sceneID="zeZ-4H-q1C">
+            <objects>
+                <viewController storyboardIdentifier="githubUserDetailViewController" id="BjX-3p-LAv" customClass="GithubUserDetailViewController" customModule="GithubUsers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="grl-in-iSZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZdP-hx-G3F">
+                                <rect key="frame" x="112.5" y="72" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="mIw-UO-Gqx"/>
+                                    <constraint firstAttribute="width" constant="150" id="ur0-9h-Hrl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tY-aA-Hx9">
+                                <rect key="frame" x="143" y="230" width="89" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-be-bVP">
+                                <rect key="frame" x="0.0" y="262" width="375" height="405"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="repositoryTableViewCell" id="Sxk-Dt-aVu" customClass="RepositoryTableViewCell" customModule="GithubUsers" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sxk-Dt-aVu" id="hj7-ab-7gJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Respository name here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3U-Gb-rhS">
+                                                    <rect key="frame" x="23" y="12" width="329" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="d3U-Gb-rhS" firstAttribute="leading" secondItem="hj7-ab-7gJ" secondAttribute="leadingMargin" constant="8" id="82r-I7-8w4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="d3U-Gb-rhS" secondAttribute="trailing" constant="8" id="Q0E-cN-TdH"/>
+                                                <constraint firstItem="d3U-Gb-rhS" firstAttribute="centerY" secondItem="hj7-ab-7gJ" secondAttribute="centerY" id="l6r-im-LAn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="d3U-Gb-rhS" id="yHG-fZ-PbZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZdP-hx-G3F" firstAttribute="top" secondItem="Nia-FK-PcZ" secondAttribute="top" constant="8" id="Aa2-rf-Z1X"/>
+                            <constraint firstItem="yTj-be-bVP" firstAttribute="trailing" secondItem="Nia-FK-PcZ" secondAttribute="trailing" id="CkF-iY-cMl"/>
+                            <constraint firstItem="ZdP-hx-G3F" firstAttribute="centerX" secondItem="Nia-FK-PcZ" secondAttribute="centerX" id="ahl-fu-BKk"/>
+                            <constraint firstItem="yTj-be-bVP" firstAttribute="bottom" secondItem="Nia-FK-PcZ" secondAttribute="bottom" id="cwB-CK-x7A"/>
+                            <constraint firstItem="yTj-be-bVP" firstAttribute="leading" secondItem="Nia-FK-PcZ" secondAttribute="leading" id="h5N-U3-z7h"/>
+                            <constraint firstItem="yTj-be-bVP" firstAttribute="top" secondItem="4tY-aA-Hx9" secondAttribute="bottom" constant="8" id="jiE-M7-E9Z"/>
+                            <constraint firstItem="4tY-aA-Hx9" firstAttribute="top" secondItem="ZdP-hx-G3F" secondAttribute="bottom" constant="8" id="xSP-5m-ycU"/>
+                            <constraint firstItem="4tY-aA-Hx9" firstAttribute="centerX" secondItem="grl-in-iSZ" secondAttribute="centerX" id="yoI-Lo-M0u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Nia-FK-PcZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="avatarImage" destination="ZdP-hx-G3F" id="tMw-Es-L2O"/>
+                        <outlet property="tableView" destination="yTj-be-bVP" id="aaC-cG-8g1"/>
+                        <outlet property="usernameLabel" destination="4tY-aA-Hx9" id="a8g-Bn-gaZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GWh-RQ-8ME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1853.5999999999999" y="127.28635682158921"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Rd-T0-03u">

@@ -27,4 +27,11 @@ class GithubService: GithubDataSource {
             .catchErrorJustReturn([])
             .asObservable()
     }
+    
+    func findUserRepositories(username: String) -> Observable<[Repository]> {
+        return provider.rx.request(.findUserRepositories(username: username))
+            .retry(2)
+            .map(to: [Repository].self)
+            .asObservable()
+    }
 }

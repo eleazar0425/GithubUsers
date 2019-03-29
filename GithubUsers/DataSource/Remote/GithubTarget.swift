@@ -11,6 +11,7 @@ import Moya
 
 enum GithubTarget {
     case users(since: Int)
+    case findUserRepositories(username: String)
 }
 
 extension GithubTarget: TargetType {
@@ -27,6 +28,8 @@ extension GithubTarget: TargetType {
         switch self {
         case .users(_):
             return "/users"
+        case .findUserRepositories(let username):
+            return "/users/\(username)/repos"
         }
     }
     
@@ -38,12 +41,14 @@ extension GithubTarget: TargetType {
         switch self {
         case .users(let since):
             return ["since": since]
+        default:
+            return [:]
         }
     }
     
     var task: Task {
         switch self{
-        case .users(_):
+        case .users(_), .findUserRepositories(_):
             return .requestParameters(parameters: self.parameters, encoding: URLEncoding.queryString)
         }
     }

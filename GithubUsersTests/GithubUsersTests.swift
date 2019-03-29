@@ -52,6 +52,16 @@ class GithubUsersTests: XCTestCase {
                 expectation.fulfill()
             }).disposed(by: disposeBag)
         
-        let _ = XCTWaiter.wait(for: [expectation], timeout: 20)
+        let expectation2 = self.expectation(description: "Wait for the githubuser repositories request to finish")
+        
+        service.findUserRepositories(username: "eleazar0425")
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { respositories in
+                expectation2.fulfill()
+            }, onError: { error in
+                XCTFail()
+            }).disposed(by: disposeBag)
+        
+        let _ = XCTWaiter.wait(for: [expectation, expectation2], timeout: 50)
     }
 }

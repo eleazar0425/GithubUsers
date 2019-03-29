@@ -28,17 +28,19 @@ class GithubUsersViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationItem.largeTitleDisplayMode = .always
-        //self.searchController =  UISearchController(searchResultsController: nil)
-        //self.searchController.searchBar.delegate = self
-        //self.navigationItem.searchController = searchController
-        //self.navigationItem.hidesSearchBarWhenScrolling = false
-        
         
         viewModel = GithubUsersViewModel()
         
         viewModel.users.bind(to: self.collectionView.rx.items(cellIdentifier: "githubUserViewCell", cellType: GithubUserViewCell.self)) { row, user, cell in
                 cell.bind(user: user)
             }.disposed(by: disposeBag)
+        
+        self.collectionView.rx.modelSelected(GithubUser.self)
+            .subscribe(onNext: { [weak self] user in
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "githubUserDetailViewController") as! GithubUserDetailViewController
+                vc.githubUser = user
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: disposeBag)
         
         self.collectionView.rx
             .contentOffset
