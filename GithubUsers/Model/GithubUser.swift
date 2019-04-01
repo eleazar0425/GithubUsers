@@ -9,7 +9,7 @@
 import Foundation
 import Mapper
 
-struct GithubUser: Mappable {    
+struct GithubUser: Mappable, Equatable {
     var username: String
     var avatarUrl: String
     var id: Int
@@ -18,5 +18,9 @@ struct GithubUser: Mappable {
         try username = map.from("login")
         try avatarUrl = map.from("avatar_url")
         try id = map.from("id")
+    }
+    
+    static func == (lhs: GithubUser, rhs: GithubUser) -> Bool {
+        return lhs.id == rhs.id && lhs.username == rhs.username
     }
 }

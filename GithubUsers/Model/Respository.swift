@@ -9,7 +9,7 @@
 import Foundation
 import Mapper
 
-struct Repository: Mappable {
+struct Repository: Mappable, Equatable {
     var id: Int
     var name: String
     var description: String?
@@ -20,7 +20,11 @@ struct Repository: Mappable {
         self.id = try map.from("id")
         self.name = try map.from("name")
         self.description = map.optionalFrom("description")
-        self.language = try map.optionalFrom("language")
+        self.language = map.optionalFrom("language")
         self.stargazersCount = try map.from("stargazers_count")
+    }
+    
+    static func == (lhs: Repository, rhs: Repository) -> Bool {
+        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.language == rhs.language
     }
 }

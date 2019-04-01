@@ -11,4 +11,5 @@ import RxSwift
 
 protocol GithubDataSource {
     func getUsers(since: Int) -> Observable<[GithubUser]>
+    func findUserRepositories(username: String) -> Observable<[Repository]>
 }

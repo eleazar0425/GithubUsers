@@ -15,9 +15,9 @@ protocol GithubUserDetailViewModelType {
 
 class GithubUserDetailViewModel: GithubUserDetailViewModelType {
     var repositories: Observable<[Repository]>!
-    var service: GithubService
+    var service: GithubDataSource
     
-    init(gihubUser: GithubUser, service: GithubService = GithubService()){
+    init(gihubUser: GithubUser, service: GithubDataSource = GithubService()){
         self.service = service
         self.repositories = service.findUserRepositories(username: gihubUser.username)
     }

@@ -17,11 +17,11 @@ protocol GithubUsersViewModelType {
 
 class GithubUsersViewModel: GithubUsersViewModelType {
     var users: Observable<[GithubUser]>!
-    var service: GithubService
+    var service: GithubDataSource
     var lastUser = 0
     var loadMore: BehaviorSubject<Bool>!
     
-    init(service: GithubService = GithubService()){
+    init(service: GithubDataSource = GithubService()){
         self.service = service
         
         var userArray = [GithubUser]()
